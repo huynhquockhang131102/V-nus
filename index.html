@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Venus Cosmetics</title>
+  <meta name="description" content="Venus Cosmetics - Son, Dưỡng mi và sản phẩm làm đẹp" />
+  <style>
+    :root{
+      --pink:#ff2d55;
+      --pink-2:#ff4d7a;
+      --light-pink:#ffd6e0;
+      --white:#ffffff;
+      --muted:#444;
+      --muted-2:#777;
+      --card-bg:#fff;
+      --border:#f2f2f2;
+      --radius:12px;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Arial,sans-serif;margin:0;color:var(--muted);background:linear-gradient(180deg,#fff,#fff);-webkit-font-smoothing:antialiased}
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 16px}
+    header.site-header{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40}
+    .site-header .container{display:flex;align-items:center;gap:12px;padding:12px 0}
+    .logo{font-weight:800;color:var(--pink);font-size:20px;letter-spacing:1px}
+    .search{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #eee;outline:none}
+    .icons{display:flex;gap:8px;align-items:center}
+    .icons button{background:transparent;border:1px solid var(--pink);color:var(--pink);padding:8px 12px;border-radius:10px;cursor:pointer}
+    .hero{background:linear-gradient(90deg,var(--light-pink),#fff);padding:36px 0;border-bottom:1px solid var(--border)}
+    .hero-inner{display:flex;align-items:center;gap:24px}
+    .hero-text h1{color:var(--pink-2);margin:0;font-size:36px;line-height:1}
+    .hero-text p{margin:8px 0 16px;color:var(--muted-2)}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:none;cursor:pointer}
+    .btn.primary{background:var(--pink-2);color:#fff}
+    .btn.ghost{background:transparent;border:1px solid var(--pink);color:var(--pink)}
+    .hero-image{flex:1;display:flex;justify-content:center}
+    .hero-card{width:320px;height:220px;border-radius:16px;background:linear-gradient(135deg,#fff 0%, #ffeef6 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(255,45,85,0.08);border:1px solid #fff}
+    .hero-card .mock{font-size:48px}
+    section.categories{padding:20px 0}
+    .categories h2{margin:0 0 12px;color:var(--pink-2)}
+    .cats{display:flex;gap:12px;flex-wrap:wrap}
+    .cat{background:var(--card-bg);border:1px solid var(--border);padding:14px 18px;border-radius:12px;min-width:120px;text-align:center;color:var(--pink-2);font-weight:700;cursor:pointer}
+    section.products{padding:20px 0}
+    .products h2{margin:0 0 12px;color:var(--pink-2)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .product{background:var(--card-bg);border:1px solid var(--border);padding:12px;border-radius:var(--radius);display:flex;flex-direction:column;gap:10px}
+    .img-placeholder{height:180px;border-radius:10px;background:linear-gradient(135deg,#fff 0%, #ffeef6 100%);display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--pink-2);box-shadow:0 6px 14px rgba(255,45,85,0.06)}
+    .product h3{margin:0;font-size:16px;color:var(--muted)}
+    .price{color:var(--pink-2);font-weight:800}
+    .product .actions{display:flex;gap:8px;margin-top:auto}
+    .product .actions .btn{flex:1}
+    footer.site-footer{border-top:1px solid var(--border);padding:18px 0;background:#fff;margin-top:24px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .small{font-size:13px;color:var(--muted-2)}
+    /* responsive */
+    @media(max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero-inner{flex-direction:column;text-align:center}
+      .hero-image{order:2}
+    }
+    @media(max-width:600px){
+      .grid{grid-template-columns:1fr}
+      .search{display:none}
+      .logo{font-size:18px}
+      .hero-text h1{font-size:28px}
+      .hero-card{width:260px;height:180px}
+    }
+    /* small helpers */
+    .center{display:flex;align-items:center;justify-content:center}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">VENUS</div>
+      <input class="search" placeholder="Tìm son, dưỡng mi..." aria-label="Tìm kiếm" />
+      <div class="icons">
+        <button id="cartBtn" title="Giỏ hàng">Giỏ hàng (<span id="cartCount">0</span>)</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Venus Cosmetics</h1>
+          <p>Vẻ đẹp rạng rỡ mỗi ngày — Son, dưỡng mi và chăm sóc da</p>
+          <div style="display:flex;gap:10px;justify-content:flex-start">
+            <a class="btn primary" href="#products">Mua ngay</a>
+            <a class="btn ghost" href="#categories">Khám phá</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="hero-card" aria-hidden="true">
+            <div class="mock">💄</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="container categories">
+      <h2>Danh mục</h2>
+      <div class="cats" id="categoryList">
+        <div class="cat" data-cat="Son">Son</div>
+        <div class="cat" data-cat="Dưỡng mi">Dưỡng mi</div>
+        <div class="cat" data-cat="Chăm sóc da">Chăm sóc da</div>
+        <div class="cat" data-cat="Phụ kiện">Phụ kiện</div>
+      </div>
+    </section>
+
+    <section id="products" class="container products">
+      <h2>Sản phẩm nổi bật</h2>
+      <div class="grid" id="productGrid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="small">© <strong>Venus Cosmetics</strong> — Thiết kế tone đỏ‑hồng</div>
+      <div class="small">Liên hệ: <strong>0900 000 000</strong> • Email: hello@venus.example</div>
+    </div>
+  </footer>
+
+  <script>
+    // Demo product data
+    const products = [
+      {id:1,name:"Son Velvet Red",price:250000,cat:"Son",desc:"Lên màu chuẩn, mịn môi"},
+      {id:2,name:"Son Nude Satin",price:230000,cat:"Son",desc:"Tông nude tự nhiên"},
+      {id:3,name:"Dưỡng mi LashBoost",price:320000,cat:"Dưỡng mi",desc:"Tăng độ dài và dày cho mi"},
+      {id:4,name:"Serum Glow",price:420000,cat:"Chăm sóc da",desc:"Dưỡng sáng, mờ thâm"},
+      {id:5,name:"Cọ trang điểm",price:120000,cat:"Phụ kiện",desc:"Cọ mềm, dễ tán"},
+      {id:6,name:"Dưỡng mi NightCare",price:280000,cat:"Dưỡng mi",desc:"Phục hồi mi khi ngủ"}
+    ];
+
+    const grid = document.getElementById('productGrid');
+    const cartCountEl = document.getElementById('cartCount');
+    let cartCount = 0;
+
+    function formatVND(n){
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " ₫";
+    }
+
+    function renderProducts(list){
+      grid.innerHTML = '';
+      list.forEach(p=>{
+        const el = document.createElement('div');
+        el.className='product';
+        el.innerHTML = `
+          <div class="img-placeholder center" aria-hidden="true">💋</div>
+          <h3>${p.name}</h3>
+          <div class="small" style="color:var(--muted-2)">${p.desc}</div>
+          <div class="price">${formatVND(p.price)}</div>
+          <div class="actions">
+            <button class="btn" data-action="add" data-id="${p.id}">Thêm vào giỏ</button>
+            <button class="btn primary" data-action="momo" data-id="${p.id}">Mua bằng MoMo</button>
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    // initial render
+    renderProducts(products);
+
+    // category filter
+    document.getElementById('categoryList').addEventListener('click', e=>{
+      const cat = e.target.dataset.cat;
+      if(!cat) return;
+      const filtered = products.filter(p=>p.cat === cat);
+      renderProducts(filtered);
+      window.location.hash = '#products';
+    });
+
+    // product actions
+    document.addEventListener('click', e=>{
+      const btn = e.target.closest('button');
+      if(!btn) return;
+      const action = btn.dataset.action;
+      const id = Number(btn.dataset.id);
+      if(action === 'add'){
+        cartCount++;
+        cartCountEl.textContent = cartCount;
+        btn.textContent = 'Đã thêm';
+        btn.disabled = true;
+        setTimeout(()=>{ btn.textContent = 'Thêm vào giỏ'; btn.disabled = false; }, 1200);
+      } else if(btn.dataset.action === 'momo' || btn.classList.contains('primary') && btn.dataset.action === 'momo'){
+        // Demo client-side flow: in production, call your server to create MoMo payment and redirect
+        const product = products.find(p=>p.id===id);
+        const demoMsg = [
+          'Demo thanh toán MoMo',
+          'Sản phẩm: ' + product.name,
+          'Số tiền: ' + formatVND(product.price),
+          '',
+          'Lưu ý: Đây chỉ là demo. Để thanh toán thực tế, bạn cần tạo API server-side theo tài liệu MoMo và chuyển hướng người dùng tới payUrl của MoMo.'
+        ].join('\\n');
+        alert(demoMsg);
+      } else if(btn.id === 'cartBtn'){
+        alert('Giỏ hàng demo: ' + cartCount + ' sản phẩm');
+      }
+    });
+
+    // simple search (client-side)
+    document.querySelector('.search')?.addEventListener('input', function(){
+      const q = this.value.trim().toLowerCase();
+      if(!q){ renderProducts(products); return; }
+      const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+      renderProducts(filtered);
+    });
+  </script>
+</body>
+</html>
