@@ -10,6 +10,9 @@
       --pink:#ff2d55;
       --pink-2:#ff4d7a;
       --light-pink:#ffd6e0;
+      --brown:#8b6f47;
+      --brown-light:#a88968;
+      --brown-dark:#6b5437;
       --white:#ffffff;
       --muted:#444;
       --muted-2:#777;
@@ -34,8 +37,11 @@
     .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;border:none;cursor:pointer}
     .btn.primary{background:var(--pink-2);color:#fff}
     .btn.ghost{background:transparent;border:1px solid var(--pink);color:var(--pink)}
+    .btn.brown{background:var(--brown);color:#fff}
+    .btn.brown:hover{background:var(--brown-dark)}
+    .btn:hover{opacity:0.9}
     .hero-image{flex:1;display:flex;justify-content:center}
-    .hero-card{width:320px;height:220px;border-radius:16px;background:linear-gradient(135deg,#fff 0%, #ffeef6 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(255,45,85,0.08);border:1px solid #fff}
+    .hero-card{width:320px;height:220px;border-radius:16px;background:linear-gradient(135deg,#fff 0%, #ffeef6 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(255,45,85,0.1)}
     .hero-card .mock{font-size:48px}
     section.categories{padding:20px 0}
     .categories h2{margin:0 0 12px;color:var(--pink-2)}
@@ -45,7 +51,7 @@
     .products h2{margin:0 0 12px;color:var(--pink-2)}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .product{background:var(--card-bg);border:1px solid var(--border);padding:12px;border-radius:var(--radius);display:flex;flex-direction:column;gap:10px}
-    .img-placeholder{height:180px;border-radius:10px;background:linear-gradient(135deg,#fff 0%, #ffeef6 100%);display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--pink-2);box-shadow:0 6px 14px rgba(255,45,85,0.06)}
+    .img-placeholder{height:180px;border-radius:10px;background:linear-gradient(135deg,#fff 0%, #ffeef6 100%);display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--pink-2)}
     .product h3{margin:0;font-size:16px;color:var(--muted)}
     .price{color:var(--pink-2);font-weight:800}
     .product .actions{display:flex;gap:8px;margin-top:auto}
@@ -53,6 +59,65 @@
     footer.site-footer{border-top:1px solid var(--border);padding:18px 0;background:#fff;margin-top:24px}
     .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
     .small{font-size:13px;color:var(--muted-2)}
+    
+    /* Modal & Cart Styles */
+    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}
+    .modal.active{display:flex}
+    .modal-content{background:#fff;border-radius:16px;width:90%;max-width:600px;max-height:80vh;overflow-y:auto;padding:24px;box-shadow:0 8px 32px rgba(0,0,0,0.15)}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:2px solid var(--border);padding-bottom:12px}
+    .modal-header h2{margin:0;color:var(--pink-2)}
+    .modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+    
+    /* Cart Page Styles */
+    .cart-empty{text-align:center;padding:40px 20px;color:var(--muted-2)}
+    .cart-empty p{font-size:18px;margin:10px 0}
+    .cart-items{display:flex;flex-direction:column;gap:12px}
+    .cart-item{display:flex;gap:12px;align-items:center;border:1px solid var(--border);padding:12px;border-radius:10px;background:#fafafa}
+    .cart-item-img{width:60px;height:60px;border-radius:8px;background:linear-gradient(135deg,#fff 0%, #ffeef6 100%);display:flex;align-items:center;justify-content:center;font-size:24px}
+    .cart-item-info{flex:1}
+    .cart-item-name{font-weight:600;color:var(--muted);margin-bottom:4px}
+    .cart-item-price{color:var(--pink-2);font-weight:700}
+    .cart-item-qty{display:flex;gap:8px;align-items:center;margin-top:8px}
+    .qty-btn{width:28px;height:28px;border:1px solid var(--border);background:#fff;cursor:pointer;border-radius:4px}
+    .cart-item-remove{background:none;border:none;color:#999;cursor:pointer;padding:4px 8px;font-size:12px}
+    
+    .cart-summary{border-top:2px solid var(--border);margin-top:16px;padding-top:16px}
+    .summary-row{display:flex;justify-content:space-between;margin:8px 0;color:var(--muted)}
+    .summary-total{display:flex;justify-content:space-between;margin:12px 0;font-weight:700;font-size:18px;color:var(--pink-2)}
+    .cart-actions{display:flex;gap:10px;margin-top:16px}
+    .cart-actions .btn{flex:1}
+    
+    /* Checkout Page Styles */
+    .checkout-container{padding:20px}
+    .checkout-section{margin-bottom:24px;padding:16px;border:1px solid var(--border);border-radius:12px;background:#fafafa}
+    .checkout-section h3{margin:0 0 12px;color:var(--brown-dark);border-bottom:2px solid var(--brown-light);padding-bottom:8px}
+    .form-group{margin-bottom:12px}
+    .form-group label{display:block;margin-bottom:4px;color:var(--muted);font-weight:600;font-size:14px}
+    .form-group input,.form-group select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit}
+    .form-row{display:flex;gap:12px}
+    .form-row .form-group{flex:1}
+    
+    .payment-method{display:flex;gap:12px;margin-top:12px}
+    .payment-option{flex:1;padding:12px;border:2px solid var(--border);border-radius:10px;cursor:pointer;text-align:center;font-weight:600;color:var(--muted-2)}
+    .payment-option.selected{border-color:var(--brown);background:linear-gradient(135deg,rgba(139,111,71,0.05),rgba(139,111,71,0.02));color:var(--brown)}
+    
+    .order-review{background:linear-gradient(135deg,#fff9f5,#fff);border:1px solid #f0e6d8;padding:16px;border-radius:10px;margin-bottom:16px}
+    .order-review-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #f0d9c8}
+    .order-review-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .order-review-total{display:flex;justify-content:space-between;font-weight:700;font-size:18px;color:var(--brown);margin-top:12px;padding-top:12px;border-top:2px solid #f0d9c8}
+    
+    .checkout-actions{display:flex;gap:10px;margin-top:20px}
+    .checkout-actions .btn{flex:1;padding:12px 16px}
+    
+    /* Full Page Checkout */
+    .page{display:none}
+    .page.active{display:block}
+    .checkout-page{min-height:100vh;background:linear-gradient(135deg,#fff9f5,#fff);padding:20px 0}
+    .checkout-page .container{max-width:800px}
+    .checkout-header{text-align:center;margin-bottom:32px}
+    .checkout-header h1{color:var(--brown-dark);margin:0 0 8px;font-size:32px}
+    .checkout-header p{color:var(--muted-2);margin:0}
+    
     /* responsive */
     @media(max-width:1000px){
       .grid{grid-template-columns:repeat(2,1fr)}
@@ -65,6 +130,9 @@
       .logo{font-size:18px}
       .hero-text h1{font-size:28px}
       .hero-card{width:260px;height:180px}
+      .modal-content{width:95%;max-height:90vh}
+      .form-row{flex-direction:column}
+      .payment-method{flex-direction:column}
     }
     /* small helpers */
     .center{display:flex;align-items:center;justify-content:center}
@@ -81,62 +149,162 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>Venus Cosmetics</h1>
-          <p>Vẻ đẹp rạng rỡ mỗi ngày — Son, dưỡng mi và chăm sóc da</p>
-          <div style="display:flex;gap:10px;justify-content:flex-start">
-            <a class="btn primary" href="#products">Mua ngay</a>
-            <a class="btn ghost" href="#categories">Khám phá</a>
+  <!-- Main Page -->
+  <div id="mainPage" class="page active">
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <h1>Venus Cosmetics</h1>
+            <p>Vẻ đẹp rạng rỡ mỗi ngày — Son, dưỡng mi và chăm sóc da</p>
+            <div style="display:flex;gap:10px;justify-content:flex-start">
+              <a class="btn primary" href="#products">Mua ngay</a>
+              <a class="btn ghost" href="#categories">Khám phá</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <div class="hero-card" aria-hidden="true">
+              <div class="mock">💄</div>
+            </div>
           </div>
         </div>
-        <div class="hero-image">
-          <div class="hero-card" aria-hidden="true">
-            <div class="mock">💄</div>
+      </section>
+
+      <section id="categories" class="container categories">
+        <h2>Danh mục</h2>
+        <div class="cats" id="categoryList">
+          <div class="cat" data-cat="Son">Son</div>
+          <div class="cat" data-cat="Dưỡng mi">Dưỡng mi</div>
+          <div class="cat" data-cat="Chăm sóc da">Chăm sóc da</div>
+          <div class="cat" data-cat="Phụ kiện">Phụ kiện</div>
+        </div>
+      </section>
+
+      <section id="products" class="container products">
+        <h2>Sản phẩm nổi bật</h2>
+        <div class="grid" id="productGrid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="small">© <strong>Venus Cosmetics</strong> — Thiết kế tone đỏ‑hồng</div>
+        <div class="small">Liên hệ: <strong>0900 000 000</strong> • Email: hello@venus.example</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Checkout Page -->
+  <div id="checkoutPage" class="page checkout-page">
+    <div class="container">
+      <div class="checkout-header">
+        <h1>Thanh toán</h1>
+        <p>Hoàn tất đơn hàng của bạn</p>
+      </div>
+
+      <div class="checkout-section">
+        <h3>📦 Đơn hàng của bạn</h3>
+        <div id="checkoutOrderReview" class="order-review"></div>
+      </div>
+
+      <form id="checkoutForm">
+        <div class="checkout-section">
+          <h3>👤 Thông tin khách hàng</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Họ và tên</label>
+              <input type="text" name="fullname" required placeholder="Nguyễn Văn A">
+            </div>
+            <div class="form-group">
+              <label>Số điện thoại</label>
+              <input type="tel" name="phone" required placeholder="0900 000 000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required placeholder="example@email.com">
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="categories" class="container categories">
-      <h2>Danh mục</h2>
-      <div class="cats" id="categoryList">
-        <div class="cat" data-cat="Son">Son</div>
-        <div class="cat" data-cat="Dưỡng mi">Dưỡng mi</div>
-        <div class="cat" data-cat="Chăm sóc da">Chăm sóc da</div>
-        <div class="cat" data-cat="Phụ kiện">Phụ kiện</div>
-      </div>
-    </section>
+        <div class="checkout-section">
+          <h3>🏠 Địa chỉ giao hàng</h3>
+          <div class="form-group">
+            <label>Địa chỉ</label>
+            <input type="text" name="address" required placeholder="123 Đường ABC, Phường XYZ">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Thành phố</label>
+              <input type="text" name="city" required placeholder="Hà Nội">
+            </div>
+            <div class="form-group">
+              <label>Quận/Huyện</label>
+              <input type="text" name="district" required placeholder="Đống Đa">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mã bưu chính</label>
+            <input type="text" name="postal" placeholder="100000">
+          </div>
+        </div>
 
-    <section id="products" class="container products">
-      <h2>Sản phẩm nổi bật</h2>
-      <div class="grid" id="productGrid"></div>
-    </section>
-  </main>
+        <div class="checkout-section">
+          <h3>💳 Phương thức thanh toán</h3>
+          <div class="payment-method">
+            <div class="payment-option selected" data-method="momo">
+              <div>📱 MoMo</div>
+            </div>
+            <div class="payment-option" data-method="card">
+              <div>💳 Thẻ tín dụng</div>
+            </div>
+            <div class="payment-option" data-method="bank">
+              <div>🏦 Chuyển khoản</div>
+            </div>
+            <div class="payment-option" data-method="cod">
+              <div>💵 Thanh toán khi nhận</div>
+            </div>
+          </div>
+        </div>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="small">© <strong>Venus Cosmetics</strong> — Thiết kế tone đỏ‑hồng</div>
-      <div class="small">Liên hệ: <strong>0900 000 000</strong> • Email: hello@venus.example</div>
+        <div class="checkout-actions">
+          <button type="button" class="btn ghost" id="backToCart">← Quay lại</button>
+          <button type="submit" class="btn brown">Xác nhận thanh toán</button>
+        </div>
+      </form>
     </div>
-  </footer>
+  </div>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🛒 Giỏ hàng</h2>
+        <button class="modal-close" id="closeCart">&times;</button>
+      </div>
+      <div id="cartContent"></div>
+    </div>
+  </div>
 
   <script>
     // Demo product data
     const products = [
-      {id:1,name:"Son Velvet Red",price:250000,cat:"Son",desc:"Lên màu chuẩn, mịn môi"},
-      {id:2,name:"Son Nude Satin",price:230000,cat:"Son",desc:"Tông nude tự nhiên"},
-      {id:3,name:"Dưỡng mi LashBoost",price:320000,cat:"Dưỡng mi",desc:"Tăng độ dài và dày cho mi"},
-      {id:4,name:"Serum Glow",price:420000,cat:"Chăm sóc da",desc:"Dưỡng sáng, mờ thâm"},
-      {id:5,name:"Cọ trang điểm",price:120000,cat:"Phụ kiện",desc:"Cọ mềm, dễ tán"},
-      {id:6,name:"Dưỡng mi NightCare",price:280000,cat:"Dưỡng mi",desc:"Phục hồi mi khi ngủ"}
+      {id:1,name:"Son Velvet Red",price:250000,cat:"Son",desc:"Lên màu chuẩn, mịn môi",emoji:"💋"},
+      {id:2,name:"Son Nude Satin",price:230000,cat:"Son",desc:"Tông nude tự nhiên",emoji:"💋"},
+      {id:3,name:"Dưỡng mi LashBoost",price:320000,cat:"Dưỡng mi",desc:"Tăng độ dài và dày cho mi",emoji:"✨"},
+      {id:4,name:"Serum Glow",price:420000,cat:"Chăm sóc da",desc:"Dưỡng sáng, mờ thâm",emoji:"💧"},
+      {id:5,name:"Cọ trang điểm",price:120000,cat:"Phụ kiện",desc:"Cọ mềm, dễ tán",emoji:"🎨"},
+      {id:6,name:"Dưỡng mi NightCare",price:280000,cat:"Dưỡng mi",desc:"Phục hồi mi khi ngủ",emoji:"✨"}
     ];
 
     const grid = document.getElementById('productGrid');
     const cartCountEl = document.getElementById('cartCount');
-    let cartCount = 0;
+    const cartModal = document.getElementById('cartModal');
+    const cartContent = document.getElementById('cartContent');
+    const closeCartBtn = document.getElementById('closeCart');
+    const cartBtn = document.getElementById('cartBtn');
+    
+    let cart = [];
+    let selectedPaymentMethod = 'momo';
 
     function formatVND(n){
       return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " ₫";
@@ -148,17 +316,147 @@
         const el = document.createElement('div');
         el.className='product';
         el.innerHTML = `
-          <div class="img-placeholder center" aria-hidden="true">💋</div>
+          <div class="img-placeholder center" aria-hidden="true">${p.emoji}</div>
           <h3>${p.name}</h3>
           <div class="small" style="color:var(--muted-2)">${p.desc}</div>
           <div class="price">${formatVND(p.price)}</div>
           <div class="actions">
             <button class="btn" data-action="add" data-id="${p.id}">Thêm vào giỏ</button>
-            <button class="btn primary" data-action="momo" data-id="${p.id}">Mua bằng MoMo</button>
+            <button class="btn primary" data-action="checkout" data-id="${p.id}">Mua ngay</button>
           </div>
         `;
         grid.appendChild(el);
       });
+    }
+
+    function updateCartDisplay(){
+      cartCountEl.textContent = cart.length;
+      
+      if(cart.length === 0){
+        cartContent.innerHTML = '<div class="cart-empty"><p>Giỏ hàng trống</p><p style="font-size:14px">Hãy thêm sản phẩm để bắt đầu mua sắm</p></div>';
+        return;
+      }
+
+      const itemsHTML = cart.map((item, idx) => `
+        <div class="cart-item">
+          <div class="cart-item-img">${products.find(p => p.id === item.id).emoji}</div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">${formatVND(item.price)}</div>
+            <div class="cart-item-qty">
+              <button class="qty-btn" data-action="qty-minus" data-idx="${idx}">−</button>
+              <span style="width:30px;text-align:center">${item.qty}</span>
+              <button class="qty-btn" data-action="qty-plus" data-idx="${idx}">+</button>
+              <button class="cart-item-remove" data-action="remove" data-idx="${idx}">Xóa</button>
+            </div>
+          </div>
+          <div style="text-align:right;font-weight:600;color:var(--pink-2)">${formatVND(item.price * item.qty)}</div>
+        </div>
+      `).join('');
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const shipping = 30000;
+      const total = subtotal + shipping;
+
+      const summaryHTML = `
+        <div class="cart-items">${itemsHTML}</div>
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Tạm tính:</span>
+            <span>${formatVND(subtotal)}</span>
+          </div>
+          <div class="summary-row">
+            <span>Phí giao hàng:</span>
+            <span>${formatVND(shipping)}</span>
+          </div>
+          <div class="summary-total">
+            <span>Tổng cộng:</span>
+            <span>${formatVND(total)}</span>
+          </div>
+          <div class="cart-actions">
+            <button class="btn ghost" id="continueShopping">Tiếp tục mua sắm</button>
+            <button class="btn brown" id="goToCheckout">Thanh toán</button>
+          </div>
+        </div>
+      `;
+
+      cartContent.innerHTML = summaryHTML;
+
+      // Attach event listeners for cart actions
+      cartContent.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', handleCartAction);
+      });
+
+      document.getElementById('continueShopping').addEventListener('click', () => {
+        cartModal.classList.remove('active');
+      });
+
+      document.getElementById('goToCheckout').addEventListener('click', () => {
+        goToCheckout();
+      });
+    }
+
+    function handleCartAction(e){
+      const action = e.target.dataset.action;
+      const idx = Number(e.target.dataset.idx);
+      
+      if(action === 'qty-plus'){
+        cart[idx].qty++;
+      } else if(action === 'qty-minus'){
+        if(cart[idx].qty > 1) cart[idx].qty--;
+      } else if(action === 'remove'){
+        cart.splice(idx, 1);
+      }
+      updateCartDisplay();
+    }
+
+    function addToCart(productId){
+      const product = products.find(p => p.id === productId);
+      const existing = cart.find(item => item.id === productId);
+      
+      if(existing){
+        existing.qty++;
+      } else {
+        cart.push({...product, qty: 1});
+      }
+      updateCartDisplay();
+      cartCountEl.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    function goToCheckout(){
+      cartModal.classList.remove('active');
+      document.getElementById('mainPage').classList.remove('active');
+      document.getElementById('checkoutPage').classList.add('active');
+      updateCheckoutReview();
+      window.scrollTo(0, 0);
+    }
+
+    function updateCheckoutReview(){
+      if(cart.length === 0){
+        document.getElementById('checkoutOrderReview').innerHTML = '<p style="color:var(--muted-2)">Giỏ hàng trống</p>';
+        return;
+      }
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const shipping = 30000;
+      const total = subtotal + shipping;
+
+      const reviewHTML = cart.map(item => `
+        <div class="order-review-item">
+          <div>
+            <div style="font-weight:600">${item.name}</div>
+            <div style="font-size:12px;color:var(--muted-2)">Số lượng: ${item.qty}</div>
+          </div>
+          <div style="text-align:right;font-weight:600;color:var(--brown)">${formatVND(item.price * item.qty)}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('checkoutOrderReview').innerHTML = reviewHTML + `
+        <div class="order-review-total">
+          <span>Tổng cộng:</span>
+          <span>${formatVND(total)}</span>
+        </div>
+      `;
     }
 
     // initial render
@@ -179,26 +477,90 @@
       if(!btn) return;
       const action = btn.dataset.action;
       const id = Number(btn.dataset.id);
+      
       if(action === 'add'){
-        cartCount++;
-        cartCountEl.textContent = cartCount;
-        btn.textContent = 'Đã thêm';
+        addToCart(id);
+        btn.textContent = '✓ Đã thêm';
         btn.disabled = true;
-        setTimeout(()=>{ btn.textContent = 'Thêm vào giỏ'; btn.disabled = false; }, 1200);
-      } else if(btn.dataset.action === 'momo' || btn.classList.contains('primary') && btn.dataset.action === 'momo'){
-        // Demo client-side flow: in production, call your server to create MoMo payment and redirect
-        const product = products.find(p=>p.id===id);
-        const demoMsg = [
-          'Demo thanh toán MoMo',
-          'Sản phẩm: ' + product.name,
-          'Số tiền: ' + formatVND(product.price),
-          '',
-          'Lưu ý: Đây chỉ là demo. Để thanh toán thực tế, bạn cần tạo API server-side theo tài liệu MoMo và chuyển hướng người dùng tới payUrl của MoMo.'
-        ].join('\\n');
-        alert(demoMsg);
-      } else if(btn.id === 'cartBtn'){
-        alert('Giỏ hàng demo: ' + cartCount + ' sản phẩm');
+        setTimeout(()=>{ 
+          btn.textContent = 'Thêm vào giỏ'; 
+          btn.disabled = false; 
+        }, 1200);
+      } else if(action === 'checkout'){
+        addToCart(id);
+        goToCheckout();
       }
+    });
+
+    // cart modal events
+    cartBtn.addEventListener('click', () => {
+      cartModal.classList.add('active');
+      updateCartDisplay();
+    });
+
+    closeCartBtn.addEventListener('click', () => {
+      cartModal.classList.remove('active');
+    });
+
+    cartModal.addEventListener('click', e => {
+      if(e.target === cartModal){
+        cartModal.classList.remove('active');
+      }
+    });
+
+    // Payment method selection
+    document.querySelectorAll('.payment-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedPaymentMethod = option.dataset.method;
+      });
+    });
+
+    // Checkout form submission
+    document.getElementById('checkoutForm').addEventListener('submit', e => {
+      e.preventDefault();
+      
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      const total = subtotal + 30000;
+      const formData = new FormData(document.getElementById('checkoutForm'));
+      
+      const msg = `
+✅ ĐƠN HÀNG ĐÃ ĐƯỢC TIẾP NHẬN
+
+Phương thức thanh toán: ${selectedPaymentMethod.toUpperCase()}
+Tổng tiền: ${formatVND(total)}
+
+👤 Khách hàng:
+${formData.get('fullname')}
+${formData.get('phone')}
+${formData.get('email')}
+
+📍 Địa chỉ giao hàng:
+${formData.get('address')}
+${formData.get('city')}, ${formData.get('district')}
+${formData.get('postal')}
+
+⏰ Đơn hàng sẽ được xử lý trong vòng 24 giờ.
+Bạn sẽ nhận được email xác nhận.
+
+Cảm ơn bạn đã chọn Venus Cosmetics! 💄
+      `;
+      
+      alert(msg);
+      cart = [];
+      document.getElementById('checkoutForm').reset();
+      document.getElementById('mainPage').classList.add('active');
+      document.getElementById('checkoutPage').classList.remove('active');
+      updateCartDisplay();
+      window.scrollTo(0, 0);
+    });
+
+    // Back to cart button
+    document.getElementById('backToCart').addEventListener('click', () => {
+      document.getElementById('mainPage').classList.add('active');
+      document.getElementById('checkoutPage').classList.remove('active');
+      window.scrollTo(0, 0);
     });
 
     // simple search (client-side)
